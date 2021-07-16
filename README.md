@@ -18,4 +18,4 @@ $ npm install
 
 
 ---
-⌨️ with ❤️ by [sgustavoquiroga](https://github.com/sgustavoquiroga) 😊
+⌨️ by [sgustavoquiroga](https://github.com/sgustavoquiroga) 😊
