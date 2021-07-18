@@ -5,7 +5,7 @@ This is a Basic Node.js Rest server, is built with TypeScript
 ## Getting started 🚀
 ```
 $ tsc --watch
-$ nodemon dist/app.js
+$ npm run dev
 ```
 
 Open your browser and navigate to http://localhost:8000/
