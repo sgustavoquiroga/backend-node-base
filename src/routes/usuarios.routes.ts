@@ -3,7 +3,7 @@ import { getUsuarios,
          getUsuario,
          postUsuario,
          putUsuario, deleteUsuario
-        } from '../controllers/usuarios';
+        } from '../controllers/usuarios.controller';
 import { check } from 'express-validator';
 
 import validateFields from '../middlewares/validate-fields';

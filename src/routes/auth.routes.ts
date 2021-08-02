@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { login, googleSingIn }  from '../controllers/auth';
+import { login, googleSingIn }  from '../controllers/auth.controller';
 import { check } from 'express-validator';
 import validateFields from '../middlewares/validate-fields';
 

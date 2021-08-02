@@ -1,13 +1,11 @@
-let _homeService = null;
-
-class HomeController {
-    constructor({ HomeService }){
-        _homeService = HomeService;
+import { Request, Response } from 'express';
+import { HomeService } from '../services';
+export default class HomeController {
+    homeService: HomeService;
+    constructor( _homeService: HomeService ) {
+        this.homeService=_homeService
     }
-    index(req, res){
-        return res.send(_homeService.index());
+    index() : string {
+        return this.homeService.index()
     }
-
 }
-
-export default HomeController;

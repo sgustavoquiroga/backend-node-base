@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import Server from './src/server/server';
 
-//configurar dotenv
+// dotenv config
 dotenv.config();
 
 const server = new Server();
