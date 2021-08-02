@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Usuario from '../models/usuario';
+import Usuario from '../models/usuario.model';
 import bcryptjs from 'bcryptjs';
 import jwtGenetaror from '../helpers/jwt-generator';
 import googleVerify from '../helpers/google-verify-token';

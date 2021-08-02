@@ -11,10 +11,6 @@ require('express-async-errors');
 import { errorMiddleware,notFoundMiddleware } from '../middlewares/index.middleware';
 // import loadContainer from '../startup/container';
 
-
-
-
-
 class Server{
     private app: Application;
     private port: string;
@@ -67,7 +63,7 @@ class Server{
 
     // custon Middleware
     this.app.use(errorMiddleware);
-    this.app.use(notFoundMiddleware);
+    //this.app.use(notFoundMiddleware);
 
     }
     routes() {
