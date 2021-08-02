@@ -6,11 +6,11 @@ import { getUsuarios,
         } from '../controllers/usuarios.controller';
 import { check } from 'express-validator';
 
-import validateFields from '../middlewares/validate-fields';
-import validateJwt from '../middlewares/validate-jwt';
-import { isAdminRole, isRole } from '../middlewares/validate-role';
+import validateFields from '../middlewares/validate-fields.middleware';
+import validateJwt from '../middlewares/validate-jwt.middleware';
+import { isAdminRole, isRole } from '../middlewares/validate-role.middleware';
 
-import { mailExist , findById } from '../middlewares/validate-user';
+import { mailExist , findById } from '../middlewares/validate-user.middleware';
 
 const router = Router();
 

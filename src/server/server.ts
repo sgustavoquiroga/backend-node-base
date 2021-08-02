@@ -8,8 +8,12 @@ import db from '../config/connection';
 import fileUpload from 'express-fileupload';
 import helmet from 'helmet';
 require('express-async-errors');
+import { errorMiddleware,notFoundMiddleware } from '../middlewares/index.middleware';
+// import loadContainer from '../startup/container';
 
-import loadContainer from '../startup/container';
+
+
+
 
 class Server{
     private app: Application;
@@ -60,6 +64,10 @@ class Server{
         tempFileDir : '/tmp/',
         createParentPath: true
     }));
+
+    // custon Middleware
+    this.app.use(errorMiddleware);
+    this.app.use(notFoundMiddleware);
 
     }
     routes() {
