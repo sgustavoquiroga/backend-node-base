@@ -2,19 +2,24 @@ import express, { Application } from 'express';
 import userRoutes from '../routes/usuarios.routes';
 import authRoutes from '../routes/auth.routes';
 import uploadRoutes from '../routes/uploads.routes';
-import homeRoutes from '../routes/home.routes';
+import { homeRoutes }   from '../routes/index';
 import cors from 'cors';
 import db from '../config/connection';
 import fileUpload from 'express-fileupload';
 import helmet from 'helmet';
 require('express-async-errors');
-import { errorMiddleware,notFoundMiddleware } from '../middlewares/index.middleware';
+import { errorMiddleware,notFoundMiddleware } from '../middlewares';
+
+ import { setup } from '../startup/container';
+ setup();
+
 // import loadContainer from '../startup/container';
+// import HomeRoutes from '../routes/home.routes';
 
 class Server{
     private app: Application;
     private port: string;
-    private _homeRouter:any;
+    //private _homeRouter: any;
     private apiPath = {
        usuarios: '/api/usuarios',
        auth: '/api/auth',
@@ -23,7 +28,6 @@ class Server{
     }
 
     constructor() {
-        this._homeRouter= homeRoutes;
         this.app = express();
         this.port = process.env.PORT || '80';
         this.dbConnection();
@@ -70,7 +74,7 @@ class Server{
        this.app.use( this.apiPath.usuarios, userRoutes);
        this.app.use( this.apiPath.auth, authRoutes);
        this.app.use( this.apiPath.uploads, uploadRoutes);
-       this.app.use( this.apiPath.home, this._homeRouter);
+       this.app.use( this.apiPath.home, homeRoutes);
     }
 
     listen(){

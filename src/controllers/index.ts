@@ -1,6 +1,5 @@
-import HomeController from "./home.controller";
-
+import  HomeController from "./home.controller";
 
 export {
         HomeController
-       };
+       }

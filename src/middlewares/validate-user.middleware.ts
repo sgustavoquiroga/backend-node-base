@@ -1,4 +1,4 @@
-import Usuario from '../models/usuario';
+import Usuario from '../models/usuario.model';
 
 const mailExist  = async( email = '' ) => {
     // Verificar si el correo existe

@@ -25,6 +25,7 @@
         "google-auth-library": "^7.0.4",
         "helmet": "^4.6.0",
         "jest": "^27.0.6",
+        "jshint": "^2.13.0",
         "jsonwebtoken": "^8.5.1",
         "mariadb": "^2.5.4",
         "memory-cache": "^0.2.0",
