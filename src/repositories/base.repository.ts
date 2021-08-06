@@ -1,25 +1,8 @@
-import { IntegerDataType } from "sequelize/types";
-
-class BaseRepository {
-    model :any;
-   constructor(model:any) {
-       this.model = model;
-   }
-   async get( id:number ){
-       return await this.model.findByPk(id);
-   }
-   async getAll(){
-    return await this.model.findAll();
-   }
-   async build( entity:any ){
-    return await this.model.build(entity);
-   }
-   async update( entity:any ){
-    return await this.model.update(entity);
-   }
-   async delete(){
-    return await this.model.destroy();
-   }
+interface BaseRepository<T> {
+    findById(id: string): Promise<T| null>;
+    getAll(): Promise<T | null>;
+    create(data: any): Promise<T | null>;
+    update(id: string, data: string): Promise<T>;
 }
 
 export default BaseRepository;
