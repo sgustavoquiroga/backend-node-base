@@ -1,8 +1,13 @@
-
 import { createContainer, asClass, asValue, asFunction , InjectionMode}  from 'awilix';
 
 // services
- import { HomeService } from '../services';
+ import {
+         HomeService,
+         UserService,
+        } from '../services';
+
+ // repositories
+ import { UserRepository } from '../repositories';
 
 // Create the container
 const container = createContainer({
@@ -12,14 +17,10 @@ const container = createContainer({
 function setup(){
     container.register({
          homeService: asClass(HomeService),
+         userService: asClass(UserService),
+    }).register({
+        userRepository: asClass(UserRepository),
     });
-    /*.register({
-        // HomeController: asClass(HomeController.bind(HomeController)),
-    });
-    */
-    /*.register({
-        HomeRoutes: asFunction(HomeRoutes),
-    });*/
  }
 export {
     container,

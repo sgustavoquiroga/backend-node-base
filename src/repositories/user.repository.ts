@@ -1,14 +1,13 @@
-import BaseRepository from './base.repository';
 import Usuario from '../models/usuario.model';
 const bcryptjs = require('bcryptjs');
 
-class UserRepository  implements  BaseRepository < typeof Usuario> {
+class UserRepository   {
     private models: any;
 
     constructor () {
         this.models = Usuario;
     }
-    public async findById (id: string){
+    public async get(id: string){
         const usuario = await this.models.findByPk( id );
         // si existe
         if (usuario) {
@@ -41,10 +40,39 @@ class UserRepository  implements  BaseRepository < typeof Usuario> {
         }
 
     }
-    update(){
+    public async update(id: string, data:any){
+        try 
+        {
+            const usuario = await this.models.findByPk ( id );
+            if (!usuario){
+                console.log(`Usuario no encontrado, Id: ${ id }`);
+                return null;
+            }
+            await usuario.update(data);
+            return usuario;
+        } catch (error) {
+                console.log(error);
+                return null;
+        }
 
     }
+    public async delete(id: string){
+        try
+        {
+            const usuario = await this.models.findByPk ( id );
+            if (!usuario){
+                console.log(`Usuario no encontrado, Id: ${ id }`);
+                return null;
+            }
+            await usuario.update ({
+                estado: false
+            });
+            return usuario;
+        } catch (error) {
+                console.log(error);
+                return null;
+        }
 
-    
+    }
 }
 export default UserRepository;
