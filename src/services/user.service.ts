@@ -1,73 +1,17 @@
-import UserRepository from '../repositories/user.repository';
+import BaseService from '../services/base.service';
+import { container }  from '../startup/container';
 
-class UserService {
-    repository: any;
+class UserService extends BaseService {
+    _UserRepository: any;
     constructor() {
-      this.repository = UserRepository;
+      const userRepository = container.resolve('userRepository');
+      super(userRepository);
+      this._UserRepository = userRepository;
     }
-    async get(id:string) {
-        if ( !id ) {
-            const error = new Error();
-            error.message = "id must by send";
-            throw error;
-        }
-        const currentEntity = await this.repository.get(id);
-        if ( !currentEntity ) {
-            const error = new Error();
-            error.message = "entity does not faund";
-            throw error;
-        }
-      return currentEntity;
-    }
-
-    async getAll() {
-        const entities = await this.repository.getAll();
-        if ( !entities ) {
-            const error = new Error();
-            error.message = "not found";
-            throw error;
-        }
-      return entities;
-    }
-
-    async create(data:any) {
-        const entities = await this.repository.create(data);
-        if ( !entities ) {
-            const error = new Error();
-            error.message = "not created";
-            throw error;
-        }
-      return entities;
-    }
-
-    async update(id:string, data:any) {
-        if ( !id ) {
-            const error = new Error();
-            error.message = "id must by send";
-            throw error;
-        }
-        const currentEntity = await this.repository.update(id,data);
-        if ( !currentEntity ) {
-            const error = new Error();
-            error.message = "entity does not updated";
-            throw error;
-        }
-      return currentEntity;
-    }
-
-    async delete(id:string) {
-        if ( !id ) {
-            const error = new Error();
-            error.message = "id must by send";
-            throw error;
-        }
-        const currentEntity = await this.repository.delete(id);
-        if ( !currentEntity ) {
-            const error = new Error();
-            error.message = "entity does not deleted";
-            throw error;
-        }
-      return currentEntity;
+    // here custom method
+    async createUser(data: any){
+      const user = await this._UserRepository.createUser(data);
+      return user;
     }
 }
 export default UserService;
