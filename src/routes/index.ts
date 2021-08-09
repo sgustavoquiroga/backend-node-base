@@ -1,2 +1,6 @@
 import homeRoutes from "./home.routes";
-export { homeRoutes }
+import userRoutes from "./user.routes";
+export {
+       homeRoutes,
+       userRoutes
+    }

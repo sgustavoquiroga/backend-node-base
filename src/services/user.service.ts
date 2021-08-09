@@ -24,7 +24,7 @@ class UserService {
         const entities = await this.repository.getAll();
         if ( !entities ) {
             const error = new Error();
-            error.message = "not faund";
+            error.message = "not found";
             throw error;
         }
       return entities;

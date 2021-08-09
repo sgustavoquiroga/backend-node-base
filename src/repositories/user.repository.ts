@@ -7,7 +7,7 @@ class UserRepository   {
     constructor () {
         this.models = Usuario;
     }
-    public async get(id: string){
+   async get(id: string){
         const usuario = await this.models.findByPk( id );
         // si existe
         if (usuario) {
@@ -16,7 +16,7 @@ class UserRepository   {
           return null;
         }
     }
-    public async getAll(){
+     async getAll(){
         const usuarios = await this.models.findAll({
             where: {
                 estado: true
@@ -24,7 +24,7 @@ class UserRepository   {
         });
         return(usuarios);
     }
-    public async create(data: any){
+     async create(data: any){
         const {  nombre, email, password, rol } = data;
         const usuario = await this.models.create({ nombre, email, password, rol });
         try {
@@ -40,7 +40,7 @@ class UserRepository   {
         }
 
     }
-    public async update(id: string, data:any){
+    async update(id: string, data:any){
         try 
         {
             const usuario = await this.models.findByPk ( id );
@@ -56,7 +56,7 @@ class UserRepository   {
         }
 
     }
-    public async delete(id: string){
+    async delete(id: string){
         try
         {
             const usuario = await this.models.findByPk ( id );

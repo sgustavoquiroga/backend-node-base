@@ -8,7 +8,7 @@ class UserController {
     async get (req: Request, res: Response ) {
         const userService = container.resolve('userService');
         const { id } = req.params;
-        const usuario = await userService.get( id );
+        const usuario = await userService.get(id);
         // se valida que exista usuario
         if (usuario) {
             res.json(usuario);
@@ -20,4 +20,4 @@ class UserController {
 
     }
 }
-export default UserController
+export default new UserController()

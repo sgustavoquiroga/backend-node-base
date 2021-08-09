@@ -1,8 +1,8 @@
 import express, { Application } from 'express';
-import userRoutes from '../routes/usuarios.routes';
+import usuarioRoutes from '../routes/usuarios.routes';
 import authRoutes from '../routes/auth.routes';
 import uploadRoutes from '../routes/uploads.routes';
-import { homeRoutes }   from '../routes/index';
+import { homeRoutes, userRoutes }   from '../routes/index';
 import cors from 'cors';
 import db from '../config/connection';
 import fileUpload from 'express-fileupload';
@@ -19,9 +19,9 @@ import { errorMiddleware,notFoundMiddleware } from '../middlewares';
 class Server{
     private app: Application;
     private port: string;
-    //private _homeRouter: any;
     private apiPath = {
        usuarios: '/api/usuarios',
+       users:'/api/users',
        auth: '/api/auth',
        uploads: '/api/uploads',
        home: '/home',
@@ -66,12 +66,13 @@ class Server{
     }));
 
     // custon Middleware
-    this.app.use(errorMiddleware);
-    //this.app.use(notFoundMiddleware);
+    // this.app.use(errorMiddleware);
+    // this.app.use(notFoundMiddleware);
 
     }
     routes() {
-       this.app.use( this.apiPath.usuarios, userRoutes);
+       this.app.use( this.apiPath.usuarios, usuarioRoutes);
+       this.app.use( this.apiPath.users, userRoutes);
        this.app.use( this.apiPath.auth, authRoutes);
        this.app.use( this.apiPath.uploads, uploadRoutes);
        this.app.use( this.apiPath.home, homeRoutes);
