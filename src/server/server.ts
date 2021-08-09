@@ -1,5 +1,4 @@
 import express, { Application } from 'express';
-import usuarioRoutes from '../routes/usuarios.routes';
 import authRoutes from '../routes/auth.routes';
 import uploadRoutes from '../routes/uploads.routes';
 import { homeRoutes, userRoutes }   from '../routes/index';
@@ -20,7 +19,6 @@ class Server{
     private app: Application;
     private port: string;
     private apiPath = {
-       usuarios: '/api/usuarios',
        users:'/api/users',
        auth: '/api/auth',
        uploads: '/api/uploads',
@@ -71,7 +69,6 @@ class Server{
 
     }
     routes() {
-       this.app.use( this.apiPath.usuarios, usuarioRoutes);
        this.app.use( this.apiPath.users, userRoutes);
        this.app.use( this.apiPath.auth, authRoutes);
        this.app.use( this.apiPath.uploads, uploadRoutes);

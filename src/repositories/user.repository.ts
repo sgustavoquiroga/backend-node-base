@@ -1,76 +1,28 @@
 import Usuario from '../models/usuario.model';
+import BaseRepository from './base.repository';
 const bcryptjs = require('bcryptjs');
 
-class UserRepository   {
-    private models: any;
-
+class UserRepository extends BaseRepository {
+    private currentModel: any;
     constructor () {
-        this.models = Usuario;
+        const usuario = Usuario;
+        super(usuario);
+        this.currentModel = usuario;
     }
-   async get(id: string){
-        const usuario = await this.models.findByPk( id );
-        // si existe
-        if (usuario) {
-           return(usuario);
-        }else{
-          return null;
-        }
-    }
-     async getAll(){
-        const usuarios = await this.models.findAll({
-            where: {
-                estado: true
-            }
-        });
-        return(usuarios);
-    }
-     async create(data: any){
+    // here custom Method
+    async createUser(data: any){
         const {  nombre, email, password, rol } = data;
-        const usuario = await this.models.create({ nombre, email, password, rol });
+        const user = await this.currentModel.create({ nombre, email, password, rol });
         try {
             // Encriptar la contraseña
             const salt = bcryptjs.genSaltSync();
-            usuario.password = bcryptjs.hashSync( password, salt );
+            user.password = bcryptjs.hashSync( password, salt );
             // Guardar en BD
-            await usuario.save();
-           return usuario;
+            await user.save();
+           return user;
         } catch (error) {
             console.log(error);
             return null;
-        }
-
-    }
-    async update(id: string, data:any){
-        try 
-        {
-            const usuario = await this.models.findByPk ( id );
-            if (!usuario){
-                console.log(`Usuario no encontrado, Id: ${ id }`);
-                return null;
-            }
-            await usuario.update(data);
-            return usuario;
-        } catch (error) {
-                console.log(error);
-                return null;
-        }
-
-    }
-    async delete(id: string){
-        try
-        {
-            const usuario = await this.models.findByPk ( id );
-            if (!usuario){
-                console.log(`Usuario no encontrado, Id: ${ id }`);
-                return null;
-            }
-            await usuario.update ({
-                estado: false
-            });
-            return usuario;
-        } catch (error) {
-                console.log(error);
-                return null;
         }
 
     }
