@@ -1,5 +1,5 @@
 import BaseService from '../services/base.service';
-import { container }  from '../startup/container';
+import { container }  from '../containers/container';
 
 class UserService extends BaseService {
     _UserRepository: any;

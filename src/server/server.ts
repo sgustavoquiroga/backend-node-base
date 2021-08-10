@@ -9,7 +9,7 @@ import helmet from 'helmet';
 require('express-async-errors');
 import { errorMiddleware,notFoundMiddleware } from '../middlewares';
 
- import { setup } from '../startup/container';
+ import { setup } from '../containers/container';
  setup();
 
 // import loadContainer from '../startup/container';

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { container }  from '../startup/container';
+import { container }  from '../containers/container';
 class HomeController {
     homeService: any;
     index( req: Request, res: Response ){

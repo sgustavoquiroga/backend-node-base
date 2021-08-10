@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { container }  from '../startup/container';
+import { container }  from '../containers/container';
 
 class UserController {
     async get (req: Request, res: Response ) {
