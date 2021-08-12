@@ -1,10 +1,14 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { UserController } from '../controllers';
-import validateFields from '../middlewares/validate-fields.middleware';
 import { mailExist, findById } from '../middlewares/validate-user.middleware';
-import validateJwt from '../middlewares/validate-jwt.middleware';
 import { isRole } from '../middlewares/validate-role.middleware';
+import {
+        validateJwt,
+        validateFields,
+        cacheMiddlewore,
+       } from '../middlewares';
+
 
 const router = Router();
 
@@ -13,7 +17,7 @@ router.get('/:id', [
     validateFields
 ],UserController.get);
 
-router.get('/', UserController.getAll);
+router.get('/', [cacheMiddlewore()],UserController.getAll);
 
 router.post('/',[
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
